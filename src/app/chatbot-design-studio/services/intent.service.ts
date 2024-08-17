@@ -3,7 +3,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { LoggerService } from 'src/chat21-core/providers/abstract/logger.service';
 import { v4 as uuidv4 } from 'uuid';
 
-import { ActionReply, ActionAgent, ActionAssignFunction, ActionAssignVariable, ActionChangeDepartment, ActionClose, ActionDeleteVariable, ActionEmail, ActionHideMessage, ActionIntentConnected, ActionJsonCondition, ActionOnlineAgent, ActionOpenHours, ActionRandomReply, ActionReplaceBot, ActionWait, ActionWebRequest, Command, Wait, Message, Expression, Action, ActionAskGPT, ActionWhatsappAttribute, ActionWhatsappStatic, ActionWebRequestV2, ActionGPTTask, ActionCaptureUserReply, ActionQapla, ActionCondition, ActionMake, ActionAssignVariableV2, ActionHubspot, ActionCode, ActionReplaceBotV2, ActionAskGPTV2, ActionCustomerio, ActionVoice, ActionBrevo, Attributes, ActionN8n, ActionGPTAssistant, ActionReplyV2, ActionOnlineAgentV2 } from 'src/app/models/action-model';
+import { ActionReply, ActionAgent, ActionAssignFunction, ActionAssignVariable, ActionChangeDepartment, ActionClose, ActionDeleteVariable, ActionEmail, ActionHideMessage, ActionIntentConnected, ActionJsonCondition, ActionOnlineAgent, ActionOpenHours, ActionRandomReply, ActionReplaceBot, ActionWait, ActionWebRequest, Command, Wait, Message, Expression, Action, ActionAskGPT, ActionWhatsappAttribute, ActionWhatsappStatic, ActionWebRequestV2, ActionGPTTask, ActionCaptureUserReply, ActionQapla, ActionCondition, ActionMake, ActionAssignVariableV2, ActionHubspot, ActionCode, ActionReplaceBotV2, ActionAskGPTV2, ActionCustomerio, ActionVoice, ActionBrevo, Attributes, ActionN8n, ActionGPTAssistant, ActionReplyV2, ActionOnlineAgentV2, ActionLeadUpdate } from 'src/app/models/action-model';
 import { Intent } from 'src/app/models/intent-model';
 import { FaqService } from 'src/app/services/faq.service';
 import { FaqKbService } from 'src/app/services/faq-kb.service';
@@ -895,18 +895,18 @@ export class IntentService {
       action.question = '{{lastUserText}}'
       action.assignReplyTo = 'kb_reply';
       action.assignSourceTo = 'kb_source';
-      action.max_tokens = 512;
+      action.max_tokens = 256;
       action.temperature = 0.7;
       action.top_k = 5;
-      action.model = TYPE_GPT_MODEL['GPT-4'].value
+      action.model = TYPE_GPT_MODEL['GPT-4o'].value
       action.preview = [];
       action.history = false;
     }
     if(typeAction === TYPE_ACTION.GPT_TASK){
       action = new ActionGPTTask();
-      action.max_tokens = 128;
+      action.max_tokens = 256;
       action.temperature = 0.7;
-      action.model = TYPE_GPT_MODEL['GPT-3.5'].value
+      action.model = TYPE_GPT_MODEL['GPT-4o'].value
       action.assignReplyTo = 'gpt_reply';
       action.preview = [];
     }
@@ -957,9 +957,13 @@ export class IntentService {
     if(typeAction === TYPE_ACTION.CODE){
       action = new ActionCode();
     }
+    if(typeAction === TYPE_ACTION.LEAD_UPDATE){
+      action = new ActionLeadUpdate();
+    }
     if(typeAction === TYPE_ACTION_VXML.DTMF_FORM){
       action = new ActionVoice(TYPE_ACTION_VXML.DTMF_FORM);
       let commandWait = new Wait();
+      commandWait.time = 0;
       action.attributes.commands.push(commandWait);
       let command = new Command(TYPE_COMMAND.MESSAGE);
       command.message = new Message('text', 'A chat message will be sent to the visitor');
@@ -968,13 +972,14 @@ export class IntentService {
       commandWait2.time = 0
       action.attributes.commands.push(commandWait2);
       let command_form = new Command(TYPE_COMMAND.SETTINGS);
-      command_form.settings = { minDigits: null, maxDigits: null, terminators: '#', noInputIntent: null, noInputTimeout: 2000, bargein: true}
+      command_form.settings = { minDigits: null, maxDigits: null, terminators: '#', noInputIntent: null, noInputTimeout: 5000, bargein: true}
       command_form.subType = TYPE_ACTION_VXML.DTMF_FORM
       action.attributes.commands.push(command_form);
     }
     if(typeAction === TYPE_ACTION_VXML.DTMF_MENU){
       action = new ActionVoice(TYPE_ACTION_VXML.DTMF_MENU);
       let commandWait = new Wait();
+      commandWait.time = 0;
       (action as ActionVoice).attributes.commands.push(commandWait);
       let command = new Command(TYPE_COMMAND.MESSAGE);
       command.message = new Message('text', 'A chat message will be sent to the visitor');
@@ -983,13 +988,14 @@ export class IntentService {
       commandWait2.time = 0;
       (action as ActionVoice).attributes.commands.push(commandWait2);
       let command_form = new Command(TYPE_COMMAND.SETTINGS);
-      command_form.settings = { noInputIntent: null, noMatchIntent: null, noInputTimeout: 2000, bargein: true}
+      command_form.settings = { noInputIntent: null, noMatchIntent: null, noInputTimeout: 5000, bargein: true}
       command_form.subType = TYPE_ACTION_VXML.DTMF_MENU;
       (action as ActionVoice).attributes.commands.push(command_form);
     }
     if(typeAction === TYPE_ACTION_VXML.BLIND_TRANSFER){
       action = new ActionVoice(TYPE_ACTION_VXML.BLIND_TRANSFER);
       let commandWait = new Wait();
+      commandWait.time = 0;
       (action as ActionVoice).attributes.commands.push(commandWait);
       let command = new Command(TYPE_COMMAND.MESSAGE);
       command.message = new Message('text', 'A chat message will be sent to the visitor');
@@ -1005,6 +1011,7 @@ export class IntentService {
     if(typeAction === TYPE_ACTION_VXML.PLAY_PROMPT){
       action = new ActionVoice(TYPE_ACTION_VXML.PLAY_PROMPT);
       let commandWait = new Wait();
+      commandWait.time = 0;
       (action as ActionVoice).attributes.commands.push(commandWait);
       let command = new Command(TYPE_COMMAND.MESSAGE);
       command.message = new Message('text', 'A chat message will be played to the caller');
@@ -1021,6 +1028,7 @@ export class IntentService {
       action = new ActionVoice(TYPE_ACTION_VXML.SPEECH_FORM);
       // (action as ActionVoice).attributes.disableInputMessage = false
       let commandWait = new Wait();
+      commandWait.time = 0;
       action.attributes.commands.push(commandWait);
       let command = new Command(TYPE_COMMAND.MESSAGE);
       command.message = new Message('text', 'A chat message will be played to the caller');
@@ -1029,7 +1037,7 @@ export class IntentService {
       commandWait2.time = 0
       action.attributes.commands.push(commandWait2);
       let command_form = new Command(TYPE_COMMAND.SETTINGS);
-      command_form.settings = { bargein: true, noInputIntent: null, noInputTimeout: 2000, incompleteSpeechTimeout: 2000}
+      command_form.settings = { bargein: true, noInputIntent: null, noInputTimeout: 5000, incompleteSpeechTimeout: 700}
       command_form.subType = TYPE_ACTION_VXML.SPEECH_FORM
       action.attributes.commands.push(command_form);
     }

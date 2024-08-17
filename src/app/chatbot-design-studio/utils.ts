@@ -47,6 +47,7 @@ export enum TYPE_FUNCTION_VAR {
     capitalizeAsString  = "capitalizeAsString",
     absAsNumber         = "absAsNumber",
     ceilAsNumber        = "ceilAsNumber",
+    convertToNumber     = "convertToNumber",
     floorAsNumber       = "floorAsNumber",
     roundAsNumber       = "roundAsNumber",
     JSONparse           = 'JSONparse',
@@ -180,11 +181,12 @@ export enum OPTIONS {
 }
 
 export const TYPE_GPT_MODEL = {
-    'GPT-3': { name: "GPT-3 (DaVinci)", value: "text-davinci-003", status: "inactive"},
-    'GPT-3.5' : { name: "GPT-3.5 Turbo (ChatGPT)", value: "gpt-3.5-turbo", status: "active"},
-    'GPT-4' : { name: "GPT-4 (ChatGPT)", value: "gpt-4", status: "active"},
-    'GPT-4-turbo-preview': { name: "GPT-4 Turbo Preview (ChatGPT)", value: "gpt-4-turbo-preview", status: "active"},
-    'GPT-4o': { name: "GPT-4o (ChatGPT)", value: "gpt-4o", status: "active"}
+    'GPT-3':                { name: "GPT-3 (DaVinci)",                  value: "text-davinci-003",      status: "inactive"  },
+    'GPT-3.5' :             { name: "GPT-3.5 Turbo",                    value: "gpt-3.5-turbo",         status: "active"    },
+    'GPT-4' :               { name: "GPT-4",                            value: "gpt-4",                 status: "active"    },
+    'GPT-4-turbo-preview':  { name: "GPT-4 Turbo Preview",              value: "gpt-4-turbo-preview",   status: "active"    },
+    'GPT-4o':               { name: "GPT-4o",                           value: "gpt-4o",                status: "active"    },
+    'GPT-4o-mini':          { name: "GPT-4o mini",                      value: "gpt-4o-mini",           status: "active"    }
 }
 
 export const INTENT_TEMP_ID         = '';
@@ -255,8 +257,9 @@ export const TYPE_FUNCTION_LIST_FOR_VARIABLES: { [key: string]: { name: string, 
     "roundAsNumbers":           { name: "CDSFunctionListForVariable.roundAsNumbers",        type: TYPE_FUNCTION_VAR.roundAsNumber,              src: "assets/images/functions/round.svg"        },
     "floorAsNumbers":           { name: "CDSFunctionListForVariable.floorAsNumbers",        type: TYPE_FUNCTION_VAR.floorAsNumber,              src: "assets/images/functions/floor.svg"        },
     "ceilAsNumbers":            { name: "CDSFunctionListForVariable.ceilAsNumbers",         type: TYPE_FUNCTION_VAR.ceilAsNumber,               src: "assets/images/functions/ceil.svg"         },
-    "JSONparse":                { name: "JSON.parse",                                       type: TYPE_FUNCTION_VAR.JSONparse,                  src: "assets/images/functions/jsonParse.svg"    },
-    "JSONstringify":            { name: "JSON.stringify",                                   type: TYPE_FUNCTION_VAR.JSONstringify,              src: "assets/images/functions/jsonParse.svg"    },
+    "convertToNumber":          { name: "CDSFunctionListForVariable.convertToNumber",       type: TYPE_FUNCTION_VAR.convertToNumber,            src: "assets/images/functions/ceil.svg"         },
+    "JSONparse":                { name: "CDSFunctionListForVariable.JSONparse",             type: TYPE_FUNCTION_VAR.JSONparse,                  src: "assets/images/functions/jsonParse.svg"    },
+    "JSONstringify":            { name: "CDSFunctionListForVariable.JSONstringify",         type: TYPE_FUNCTION_VAR.JSONstringify,              src: "assets/images/functions/jsonParse.svg"    },
 }
 
 export const TYPE_FUNCTION_LIST_FOR_FUNCTIONS: { [key: string]: { name: string, type: TYPE_FUNCTION_FUNC, src?: string } } = {

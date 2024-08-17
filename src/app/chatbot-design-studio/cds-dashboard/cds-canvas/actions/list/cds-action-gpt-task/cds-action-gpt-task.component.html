@@ -90,13 +90,23 @@
             [emojiPikerBtn]="false" 
             [setAttributeBtn]="true" 
             [limitCharsText]="10000"
-            [minRow]="2"
-            [maxRow]="10" 
+            [minRow]="4"[maxRow]="6" 
             [text]="action.question" 
             [placeholder]="'CDSCanvas.EnterPrompt' | translate"
             (blur)="onBlur($event)"
             (changeTextarea)="onChangeTextarea($event, 'question')">
         </cds-textarea>
+    </div>
+
+
+    <div class="field-box">
+        <section class="disable-input-message-section">
+            <mat-checkbox 
+                [checked]="action?.history"
+                (change)="onChangeCheckbox('history')">
+                {{"CDSCanvas.UseChatHistoryInPrompt" | translate}}
+            </mat-checkbox>
+        </section>
     </div>
 
     <div style="width: 100%; display: flex; justify-content: flex-end; margin: 30px 0px 10px 0px">
@@ -110,7 +120,9 @@
     <div class="answer-preview" *ngIf="showPreview">
         <div class="header-answer-preview">
             <div class="label-and-button-container">
-                <label class="title-label">{{'CDSCanvas.AnswerPreview' | translate }}</label>
+                <label class="title-label">{{'CDSCanvas.AnswerPreview' | translate }}
+                    <span class="subtitle-label">( {{'CDSCanvas.GeneratedWith' | translate }}  {{ (model_list | filter:{key: 'value', value: action?.model }).name }} )</span>
+                </label>
                 <!-- <button id="cds-publish-btn" class="btn btn-primar set-var-btn" type="button" *ngIf="showVariablesBtn"
                     (click)="showHideVariablesSection()">Set variables
                     <span class="material-icons-round">
@@ -203,17 +215,17 @@
                     <div class="action-wait-content">
 
                         <div class="action-wait-slider ">
-                            <div class="action-wait-range">1</div>
+                            <div class="action-wait-range">10</div>
                             <mat-slider 
                                 class="wait-slider" 
                                 thumbLabel 
                                 [displayWith]="formatLabel" 
-                                step="1"  min="1" max="512"
+                                step="1"  min="10" max="2048"
                                 [(ngModel)]="action.max_tokens"
                                 (change)="updateSliderValue($event.value, 'max_tokens')" 
                                 aria-label="units">
                             </mat-slider>
-                            <div class="action-wait-range">512</div>
+                            <div class="action-wait-range">2048</div>
                         </div>
                         <!-- // doesn't work propely -->
                         <!-- <cds-text [text]="action.max_tokens.toString()" [inputType]="'number'" [maxlength]="3" [min]="1" [max]="512" (onChange)="updateSliderValue($event, 'max_tokens')" class="slider-input"></cds-text> -->
@@ -250,11 +262,10 @@
                 <!-- // system context textarea -->
                 <div class="field-box">
                     <label class="title-label">{{'CDSCanvas.SystemContext' | translate }}</label>
-                    <cds-textarea id="context" 
-                        [textLimitBtn]="false" 
+                    <cds-textarea id="context"
                         [emojiPikerBtn]="false" 
-                        [setAttributeBtn]="false"
-                        [minRow]="1" [maxRow]="3" 
+                        [limitCharsText]="10000"
+                        [minRow]="1" [maxRow]="5" 
                         [text]="action.context" 
                         [placeholder]="'CDSCanvas.YouAreAwesomeAssistant' | translate"
                         (blur)="onBlur($event)"

@@ -82,15 +82,18 @@ export class ActionOnlineAgentV2 extends Action {
     stopOnConditionMet: boolean;
     selectedOption: string;
     selectedDepartmentId?: string;
+    ignoreOperatingHours?: boolean;
     constructor() {
         super();
         this.stopOnConditionMet = true;
         this._tdActionType = TYPE_ACTION.ONLINE_AGENTSV2;
         this.selectedOption = 'all'
+        this.ignoreOperatingHours = false;
     }
 }
 
 export class ActionOpenHours extends Action {
+    slotId?: string;
     trueIntent: string;
     falseIntent: string;
     trueIntentAttributes?: string;
@@ -99,6 +102,7 @@ export class ActionOpenHours extends Action {
     constructor() {
         super();
         this.stopOnConditionMet = true;
+        // this.slotId = null;
         this._tdActionType = TYPE_ACTION.OPEN_HOURS;
     }
 }
@@ -368,6 +372,7 @@ export class ActionAskGPTV2 extends Action {
     top_k: number;
     context: string;
     history: boolean;
+    advancedPrompt?: boolean;
     constructor() {
         super();
         this._tdActionType = TYPE_ACTION.ASKGPTV2
@@ -378,6 +383,7 @@ export class ActionGPTTask extends Action {
     question: string;
     assignReplyTo: string;
     context: string;
+    history: boolean;
     max_tokens: number;
     temperature: number;
     model: string;
@@ -531,6 +537,7 @@ export class Attachment {
 export class Button {
     uid: string;
     __idConnector: string;
+    __idConnection: string;
     __isConnected: boolean;
     type: string;
     value: string;
@@ -539,6 +546,7 @@ export class Button {
     action?: string;
     attributes?: any;
     show_echo?: boolean;
+    alias?: string;
 
     constructor(
         uid: string,
@@ -731,5 +739,14 @@ export class ActionVoice extends Action {
         if (attributes){
             this.attributes = attributes;
         }
+    }
+}
+
+export class ActionLeadUpdate extends Action {
+    update: { [key: string]: string}
+    constructor(){
+        super();
+        this._tdActionType = TYPE_ACTION.LEAD_UPDATE;
+        this.update = {};
     }
 }

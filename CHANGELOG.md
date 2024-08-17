@@ -6,6 +6,95 @@
     *Giovanni Troisi*  
 ### **Copyrigth**: *Tiledesk SRL*
 
+### 1.19.0 in PROD
+
+### 1.18.4 in PROD
+
+### 1.18.3 in PROD
+
+### 1.18.2 in PROD
+
+### 1.18.2-rc.3
+👉 **added**: usage info into cds-action-gpt-task-v2 and cds-action-askkb-v2 actions
+👉 **added**: variable to system-contenxt field into cds-action-gpt-task-v2 and cds-action-askkb-v2 actions
+👉 **changed**: char limit to system-contenxt field into cds-action-gpt-task-v2 and cds-action-askkb-v2 actions
+
+### 1.18.2-rc.2
+👉 **changed**: disabled restartConversation in cds-panel-widget
+
+### 1.18.2-rc.1
+👉 **added**: convertToNumber function in cds-action-assign-variable
+
+### 1.18.1 in PROD
+
+### 1.18.0-rc.5
+👉 **added**: history property to cds-action-askkbv2
+
+### 1.18.0-rc.4
+👉 **added**: ani, dnis and callId voice property 
+👉 **added**: disabled option to select base component
+
+### 1.18.0-rc.3
+👉 **added**: description msg for ignoreOperatingHours property into cds-action-online-agents
+
+### 1.18.0-rc.2
+👉 **added**: implement time slots on cds-action-operating-hours 
+👉 **added**: ignoreOperatingHours property added on cds-action-online-agents-v2
+
+### 1.18.0-rc.1
+👉 **added**: cds-action-lead-update component
+👉 **added**: gpt-4o-mini support
+
+### 1.17.4 in PROD
+👉 **added**: gpt-4o-mini support 
+
+### 1.17.3 in PROD
+👉 **bug-fixed**: if depId is not in list, set as null the assigned property
+
+### 1.17.2 in PROD
+👉 **bug-fixed**: cds-action-askkb-v2 show same variable n-times into preview modal
+
+### 1.17.1 in PROD
+
+### 1.17.1-rc.2
+👉 **added**: check to hide/show actionCategory
+
+### 1.17.1-rc.1
+👉 **bug-fixed**: if two or more cds-action-reply-v2 is in the same intent, when user select one of them, also the first action is selected
+
+### 1.17.0-rc.1
+👉 **added**: check to project profile object to dynamically hide/show action
+
+### 1.16.1 in PROD
+
+### 1.16.1-rc.1
+👉 **bug-fixed**: connector not drowed if multiple cds-action-reply-v2 is in cascade 
+
+### 1.16.0 in PROD
+
+### 1.16.0-rc.4
+👉 **added**: eventActionChanged handler on cds-action-reply-v2
+
+### 1.16.0-rc.3
+👉 **added**: button alias
+
+### 1.16.0-rc.2
+👉 **added**: manage of blank answer for cds-action-askgpt-v2
+
+### 1.16.0-rc.1
+👉 **added**: connectors on cds-action-gallery buttons
+👉 **changed**: disabled buttons click event 
+
+### 1.15.0 in PROD
+
+### 1.15.0-rc.2
+👉 **changed**: preview textarea min/max default line in cds-action-gpttask and cds-action-askgpt-v2
+👉 **bug-fixed**: bot image profile is not loaded
+ 
+### 1.15.0-rc.1
+👉 **changed**: AI tokens default values for cds-action-gpt-task and cds-action-askkb-v2
+👉 **changed**: timeout defautl values for voice actions
+
 ### 1.14.2 in PROD
 👉 **bug-fixed**: cds-action-delete-attribute not select the right value
 

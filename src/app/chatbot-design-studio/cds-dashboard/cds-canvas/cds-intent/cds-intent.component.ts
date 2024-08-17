@@ -149,6 +149,7 @@ export class CdsIntentComponent implements OnInit, OnDestroy, OnChanges {
           } else {
             this.formSize = 0;
           }
+
         }
       });
       const subscribe = { key: subscribtionKey, value: subscribtion };

@@ -66,12 +66,28 @@ export var variableList: Array<{key: string, elements: Array<any>}> = [
             { name: 'strong Authenticated',                     value: 'strongAuthenticated',               description: 'CDSvariablesList.leadAttributesElements.strongAuthenticated.description',                     src: '', icon:'password'}
         ]
     },
-    // {   key: 'voiceFlow',
-    //     elements: [
-    //         { name: 'voice Language',                           value: 'voiceLanguage',                     description: 'CDSvariablesList.voiceFlowElements.voiceLanguage.description',                                src: '', icon:'language'},
-    //         { name: 'voice Name',                               value: 'voiceName',                         description: 'CDSvariablesList.voiceFlowElements.voiceName.description',                                    src: '', icon:'person'},
-    //         { name: 'event',                                    value: 'event',                             description: 'CDSvariablesList.voiceFlowElements.event.description',                                        src: '', icon:'perm_phone_msg'},
-    //         { name: 'last block',                               value: 'lastBlock',                         description: 'CDSvariablesList.voiceFlowElements.lastBlock.description',                                    src: '', icon:'perm_phone_msg'},
-    //     ]
-    // }
+    {   key: 'voiceFlow',
+        elements: [
+            { name: 'voice Language',                           value: 'voiceLanguage',                     description: 'CDSvariablesList.voiceFlowElements.voiceLanguage.description',                                src: '', icon:'language'},
+            { name: 'voice Name',                               value: 'voiceName',                         description: 'CDSvariablesList.voiceFlowElements.voiceName.description',                                    src: '', icon:'person'},
+            { name: 'event',                                    value: 'event',                             description: 'CDSvariablesList.voiceFlowElements.event.description',                                        src: '', icon:'perm_phone_msg'},
+            { name: 'last block',                               value: 'lastBlock',                         description: 'CDSvariablesList.voiceFlowElements.lastBlock.description',                                    src: '', icon:'perm_phone_msg'},
+            { name: 'callId',                                   value: 'callId',                            description: 'CDSvariablesList.voiceFlowElements.callId.description',                                       src: '', icon:'perm_phone_msg'},
+            { name: 'dnis',                                     value: 'dnis',                              description: 'CDSvariablesList.voiceFlowElements.dnis.description',                                         src: '', icon:'perm_phone_msg'},
+            { name: 'ani',                                      value: 'ani',                               description: 'CDSvariablesList.voiceFlowElements.ani.description',                                          src: '', icon:'perm_phone_msg'},
+        ]
+    }
+]
+
+
+export const leadPropertyList: Array<{ name: string, value: string, disabled: boolean, description?: string, src?: string, icon?: string}> = [
+    { name: 'email',                value: 'email',             disabled: false },
+    { name: 'fullname',             value: 'fullname',          disabled: false },
+    { name: 'phone',                value: 'phone',             disabled: false },
+    { name: 'company',              value: 'company',           disabled: false },
+    { name: 'streetAddress',        value: 'streetAddress',     disabled: false },
+    { name: 'city',                 value: 'city',              disabled: false },
+    { name: 'region',               value: 'region',            disabled: false },
+    { name: 'zipcode',              value: 'zipcode',           disabled: false },
+    { name: 'country',              value: 'country',           disabled: false }
 ]

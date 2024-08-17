@@ -233,6 +233,15 @@ export class CdsActionGPTTaskComponent implements OnInit {
     this.updateAndSaveAction.emit();
   }
 
+  onChangeCheckbox(target){
+    try {
+      this.action[target] = !this.action[target];
+      this.updateAndSaveAction.emit({type: TYPE_UPDATE_ACTION.ACTION, element: this.action});
+    } catch (error) {
+      this.logger.log("Error: ", error);
+    }
+  }
+
   onChangeBlockSelect(event:{name: string, value: string}, type: 'trueIntent' | 'falseIntent') {
     if(event){
       this.action[type]=event.value
@@ -339,14 +348,14 @@ export class CdsActionGPTTaskComponent implements OnInit {
       element.classList.remove('preview-container-extended')
     }, 200)
 
-    this.openaiService.previewPrompt(data).subscribe((ai_response: any) => {
+    this.openaiService.previewPrompt(data).subscribe({ next: (ai_response: any) => {
       this.searching = false;
       setTimeout(() => {
         let element = document.getElementById("preview-container");
         element.classList.add('preview-container-extended')
       }, 200)
       this.ai_response = ai_response;
-    }, (err) => {
+    }, error: (err) => {
       this.searching = false;
       this.logger.error("[ACTION GPT-TASK] previewPrompt error: ", err);
       setTimeout(() => {
@@ -359,10 +368,10 @@ export class CdsActionGPTTaskComponent implements OnInit {
         return;
       }
       this.ai_error = this.translate.instant('CDSCanvas.AiError')
-    }, () => {
+    }, complete: () => {
       this.logger.debug("[ACTION GPT-TASK] preview prompt *COMPLETE*: ");
       this.searching = false;
-    })
+    }});
 
   }
 
